@@ -1,16 +1,37 @@
-# React + Vite
+#  Pet Adoption Registration System
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+## Overview
+A simple web application for registering pets for adoption. Users can fill out a registration form with pet details and owner information, then view all registered pets in a beautiful card-based data table. Built with React, featuring smooth animations, responsive design, and emoji-enhanced pet type indicators.
 
-Currently, two official plugins are available:
+## Features
+- Simple pet registration form
+- Dynamic data table with card layout
+- Smooth animations and transitions
+- Automatic form reset after submission
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) (or [oxc](https://oxc.rs) when used in [rolldown-vite](https://vite.dev/guide/rolldown)) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+## Tech Stack
+- React.js
+- CSS3 (Flexbox, Grid, Animations)
+- JavaScript ES6+
 
-## React Compiler
+## Installation
+```bash
+npm install
+npm start
+```
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+## Usage
+The app has two main components:
+- **DisplayForm** - Collects pet and owner information
+- **DataTable** - Displays all registered pets in cards
 
-## Expanding the ESLint configuration
+Supported pet types: Dog, Cat, Rabbit, Goat, Hamster, Raccoon
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+## Form Fields
+- Pet Name
+- Pet Type (dropdown)
+- Breed
+- Your Name
+- Email
+- Phone Number
+
