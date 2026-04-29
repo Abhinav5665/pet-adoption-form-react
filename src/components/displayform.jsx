@@ -14,19 +14,48 @@ function DisplayForm({onSubmit}) {
   function handleChange(change){
     setFormData({ ...formData,[change.target.name]:change.target.value})
   }
-  function handleSubmit(){
+  function validateForm() {
+  if (!formData.petName.trim()) {
+    alert("Please enter pet name");
+    return false;
+  }
+  if (!formData.petType) {
+    alert("Please select pet type");
+    return false;
+  }
+  if (!formData.breed.trim()) {
+    alert("Please enter breed");
+    return false;
+  }
+  if (!formData.yourName.trim()) {
+    alert("Please enter your name");
+    return false;
+  }
+  if (!formData.email.trim() || !formData.email.includes("@")) {
+    alert("Please enter valid email");
+    return false;
+  }
+  if (!formData.phone.trim() || formData.phone.length < 10) {
+    alert("Please enter valid phone number (10+ digits)");
+    return false;
+  }
+  return true;
+}
+
+function handleSubmit() {
+  if (validateForm()) {
     onSubmit(formData);
     setFormData({
-        petName:"",
-    petType:"",
-    breed:"",
-    yourName:"",
-    email:"",
-    phone:""
-
-
+      petName: "",
+      petType: "",
+      breed: "",
+      yourName: "",
+      email: "",
+      phone: ""
     });
   }
+}
+
   return (
     <div
       style={{
