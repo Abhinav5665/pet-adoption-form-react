@@ -1,0 +1,80 @@
+
+generator client {
+  provider = "prisma-client"
+  output   = "../generated/prisma"
+}
+
+datasource db {
+  provider = "postgresql"
+
+}
+
+enum PetStatus {
+  AVAILABLE
+  PENDING
+  ADOPTED
+}
+
+enum RequestStatus {
+  PENDING
+  APPROVED
+  REJECTED
+}
+
+model User {
+  id        String   @id @default(uuid())
+  name      String
+  email     String   @unique
+  password  String
+  createdAt DateTime @default(now())
+
+  pets     Pet[]
+  requests AdoptionRequest[]
+  messages Message[]
+}
+
+model Pet {
+  id          String    @id @default(uuid())
+  name        String
+  species     String
+  breed       String
+  age         Int
+  location    String
+  description String
+  images      String[]
+  tags        String[]   // ← add this line
+  status      PetStatus @default(AVAILABLE)
+  createdAt   DateTime  @default(now())
+
+  listedBy   User   @relation(fields: [listedById], references: [id])
+  listedById String
+
+  requests AdoptionRequest[]
+}
+
+model AdoptionRequest {
+  id        String        @id @default(uuid())
+  message   String
+  status    RequestStatus @default(PENDING)
+  createdAt DateTime      @default(now())
+
+  pet   Pet    @relation(fields: [petId], references: [id])
+  petId String
+
+  requester   User   @relation(fields: [requesterId], references: [id])
+  requesterId String
+
+  messages Message[]
+}
+
+model Message {
+  id        String   @id @default(uuid())
+  text      String
+  createdAt DateTime @default(now())
+
+  request   AdoptionRequest @relation(fields: [requestId], references: [id])
+  requestId String
+
+  sender   User   @relation(fields: [senderId], references: [id])
+  senderId String
+}
